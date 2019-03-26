@@ -69,3 +69,25 @@ CREATE TABLE `tp2`.`ayi_user`(
 ) ENGINE = InnoDB CHARACTER SET utf8 COLLATE utf8_unicode_ci COMMENT = '用户表';
 
 ```
+
+####  在common.php添加显示json数据的逻辑
+```
+/**
+ * 通用化API接口数据输出
+ * @param int $status 业务状态码
+ * @param string $message 信息提示
+ * @param [] $data  数据
+ * @param int $httpCode http状态码
+ * @return array
+ */
+function show($status, $message, $data=[], $httpCode=200) {
+
+    $data = [
+        'status' => $status,
+        'message' => $message,
+        'data' => $data,
+    ];
+
+    return json($data, $httpCode);
+}
+```
